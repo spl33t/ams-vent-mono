@@ -1,8 +1,14 @@
 # build environment
-FROM node:alpine as build
-ENV export NODE_OPTIONS=--max-old-space-size=42768
-WORKDIR /app
-COPY . .
+FROM node:latest as build
+
+# Create app directory
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+COPY . . 
 EXPOSE 4000
-RUN npm i
-RUN npm run build
+
+RUN npx prisma generate
+CMD [ "npm", "run", "dev" ]

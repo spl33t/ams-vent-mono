@@ -5,5 +5,5 @@ services:
       context: .
       dockerfile: ./Dockerfile
     ports:
-      - "8000:8000"
+      - "4000:4000"
     command: npm run start
