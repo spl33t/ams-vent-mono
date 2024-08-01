@@ -52,7 +52,13 @@ async function bootstrap() {
     credentials: true,
     origin: [
       "http://localhost:5173",
-      "http://127.0.0.1:5173"
+      "http://127.0.0.1:5173",
+      "http://127.0.0.1:5173",
+      "http://ams-vent.ru",
+      "https://ams-vent.ru",
+      "http://147.45.254.198:4200",
+      "http://147.45.254.198:80",
+      "http://147.45.254.198:80"
     ]
   })
   app.use(cookieParser());
