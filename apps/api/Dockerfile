@@ -27,4 +27,4 @@ COPY --from=build  /app/public /app/public
 COPY --from=build  /app/prisma /app/prisma
 
 EXPOSE 4000
-CMD ["yarn", "start"]
+CMD ["yarn", "start:prod"]
