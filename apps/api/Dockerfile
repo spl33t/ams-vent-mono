@@ -8,8 +8,6 @@ RUN npm i
 
 COPY . .
 
-RUN npm run prisma:gen
+RUN npx prisma generate
 
-RUN npm run build
-
-CMD [ "node", "dist/main.js" ]
+CMD [ "npm", "run", "start:dev" ]
