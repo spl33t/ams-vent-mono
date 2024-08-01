@@ -9,5 +9,3 @@ services:
       - "4000:4000"
     environment:
       NODE_ENV: production
-    depends_on:
-      - postgres
