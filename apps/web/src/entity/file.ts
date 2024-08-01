@@ -1,0 +1,1 @@
+export type ApiFile = { id: string; location: string; relationId: string };
