@@ -1,20 +1,10 @@
-# Use the official Node.js 18 LTS image for build stage
-FROM node:18-alpine as build
-
-# Set the working directory
+# build environment
+FROM node:alpine as build
+ENV export NODE_OPTIONS=--max-old-space-size=9999999999999999
 WORKDIR /app
-
-# Copy package.json and package-lock.json to leverage Docker caching
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy the rest of the application code
 COPY . .
-
-# Generate Prisma client
+EXPOSE 4000
+RUN npm i
 RUN npx prisma generate
-
-
-CMD ["npm", "run", "start:dev"]
+RUN npm run build
+CMD [ "node", "dist/main.js" ]
