@@ -1,7 +1,6 @@
 import { Logger } from "@nestjs/common"
 import { Prisma } from "@prisma/client"
 
-
 const pictureExts = ["jpg", "png", "jpeg"]
 export const fileTypesConfig = defineFileTypes({
     Work: {
