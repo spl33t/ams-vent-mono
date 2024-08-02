@@ -1,39 +1,40 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Query } from '@nestjs/common';
 import { FilesService } from './files.service';
 import { GetOneFileByIdDto } from './dto/get-one-file-by-id.dto';
 import { GetAllFilesDto } from './dto/get-all-files.dto';
 import { DeleteOneFileByIdDto } from './dto/delete-one-file-by-id.dto';
 import { CreateFileDto } from './dto/create-files.dto';
-import { TypedBody, TypedFormData, TypedQuery, TypedRoute } from '@nestia/core';
+import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller('files')
 export class FilesController {
   constructor(private filesService: FilesService) {}
 
-  @TypedRoute.Post()
-  async upload(@TypedFormData.Body() dto: CreateFileDto) {
+  @Post()
+  @FormDataRequest()
+  async upload(@Body() dto: CreateFileDto) {
     return await this.filesService.createFile(dto);
   }
 
-  @TypedRoute.Get()
-  async getAll(@TypedQuery() dto: GetAllFilesDto) {
+  @Get()
+  async getAll(@Query() dto: GetAllFilesDto) {
     return await this.filesService.getAll(dto);
   }
 
-  async getOneById(@TypedQuery() dto: GetOneFileByIdDto) {
+  async getOneById(@Query() dto: GetOneFileByIdDto) {
     return await this.filesService.getOneById(dto);
   }
 
-  @TypedRoute.Delete()
-  async deleteOneById(@TypedQuery() dto: DeleteOneFileByIdDto) {
+  @Delete()
+  async deleteOneById(@Query() dto: DeleteOneFileByIdDto) {
     return await this.filesService.deleteFile(dto);
   }
 
-  async deleteManyFilesByIds(@TypedQuery() dto: { ids: string[] }) {
+  async deleteManyFilesByIds(@Query() dto: { ids: string[] }) {
     return await this.filesService.deleteManyFileById(dto);
   }
 
-  async deleteManyFilesByRelationId(@TypedQuery() dto: { id: string }) {
+  async deleteManyFilesByRelationId(@Query() dto: { id: string }) {
     return await this.filesService.deleteManyFilesByRelationId(dto);
   }
 }

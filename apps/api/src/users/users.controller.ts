@@ -1,6 +1,5 @@
-import { Controller, Delete, Get, OnModuleInit, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, OnModuleInit, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { TypedBody } from '@nestia/core';
 import { Prisma, User } from '@prisma/client';
 
 @Controller('users')
@@ -9,7 +8,7 @@ export class UsersController  {
 
     @Post("/")
     createUser(
-        @TypedBody() data: Prisma.UserCreateInput
+        @Body() data: Prisma.UserCreateInput
     ) {
         return this.usersService.createUser(data)
     }
@@ -35,7 +34,7 @@ export class UsersController  {
 
     @Put("/:id")
     updateUser(
-        @TypedBody() data: Omit<Prisma.UserUpdateInput, "password">,
+        @Body() data: Omit<Prisma.UserUpdateInput, "password">,
         @Param("id") id: string
     ) {
         return this.usersService.updateUser({
