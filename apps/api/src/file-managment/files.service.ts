@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { S3, Endpoint } from 'aws-sdk';
 import * as uuid from 'uuid';
-import { File as FilePrisma, Prisma } from '@prisma/client';
+//import { File as FilePrisma, Prisma } from '@prisma/client';
 import { GetOneFileByIdDto } from './dto/get-one-file-by-id.dto';
 import { GetAllFilesDto } from './dto/get-all-files.dto';
 import { DeleteOneFileByIdDto } from './dto/delete-one-file-by-id.dto';
@@ -52,7 +52,7 @@ export class FilesService {
   }
 
   async createFile({ relationId, files, type }: CreateFileDto) {
-    const result = [] as FilePrisma[]
+    const result = [] as any[]
     for (const file of files) {
       const fileId = uuid.v4();
       const originalName = decodeURI(Buffer.from(file.name, 'utf-8').toString('utf8'));
@@ -202,7 +202,7 @@ export class FilesService {
     return s3FileKey;
   }
 
-  private async buildLocation(file: FilePrisma) {
+  private async buildLocation(file: any) {
     const key = await this.buildKey({
       fileId: file.id,
       relationId: file.relationId,

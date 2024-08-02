@@ -1,6 +1,6 @@
 import { BaseExceptionFilter, HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Catch, ArgumentsHost, HttpStatus, ValidationPipe } from '@nestjs/common';
+import { Catch, ArgumentsHost, HttpStatus } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 import * as cookieParser from 'cookie-parser';
@@ -62,12 +62,8 @@ async function bootstrap() {
     ]
   })
   app.use(cookieParser());
-
-  app.useGlobalPipes(
-    new ValidationPipe({
-      transform: true // Transform is recomended configuration for avoind issues with arrays of files transformations
-    })
-  );
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
   await app.listen(PORT, () => {
     console.log(`Server started on ${PORT}`)

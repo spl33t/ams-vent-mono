@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, Param, Post, Put, Body } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { WorksService } from './works.service';
+import { TypedBody, TypedFormData, TypedRoute } from '@nestia/core';
 import { CreateWorkDto, UpdateWorkDto } from './works.dto';
 import { Public } from 'src/auth/public.decorator';
 
@@ -7,32 +8,32 @@ import { Public } from 'src/auth/public.decorator';
 export class WorksController {
     constructor(private worksService: WorksService) {}
 
-    @Post("/")
-    create(@Body() data: CreateWorkDto) {
+    @TypedRoute.Post("/")
+    create(@TypedBody() data: CreateWorkDto) {
         return this.worksService.create(data)
     }
 
 
     @Public()
-    @Get("/")
+    @TypedRoute.Get("/")
     all() {
         return this.worksService.all()
     }
 
     @Public()
-    @Get("/:id")
+    @TypedRoute.Get("/:id")
     one(@Param("id") id: string) {
         return this.worksService.one({ id })
     }
 
-    @Delete("/:id")
+    @TypedRoute.Delete("/:id")
     delete(@Param("id") id: string) {
         return this.worksService.delete({ id })
     }
 
-    @Put("/:id")
+    @TypedRoute.Put("/:id")
     put(
-        @Body() data: UpdateWorkDto,
+        @TypedBody() data: UpdateWorkDto,
         @Param("id") id: string
     ) {
         return this.worksService.update({

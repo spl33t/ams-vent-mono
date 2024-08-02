@@ -1,4 +1,5 @@
-import { Controller, Get, Post, UseInterceptors, Body } from '@nestjs/common';
+import { Controller, Get, Post, UseInterceptors } from '@nestjs/common';
+import { TypedBody } from "@nestia/core"
 import { UsersService } from 'src/users/users.service';
 import { AuthInterceptor } from './auth.interceptor';
 import { LoginInput, RegisterInput } from './types';
@@ -15,7 +16,7 @@ export class AuthController {
   @Public()
   @UseInterceptors(AuthInterceptor)
   @Post("/login")
-  async login(@Body() dto: LoginInput) {
+  async login(@TypedBody() dto: LoginInput) {
     const user = await this.usersService.user({ login: dto.login })
 
     this.usersService.comparePassword(user, dto.password)
@@ -26,7 +27,7 @@ export class AuthController {
   @Public()
   @UseInterceptors(AuthInterceptor)
   @Post("/register")
-  async register(@Body() dto: RegisterInput) {
+  async register(@TypedBody() dto: RegisterInput) {
     return await this.usersService.createUser(dto)
   }
 
