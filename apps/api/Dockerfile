@@ -18,6 +18,7 @@ RUN npx prisma generate
 
 # Build the application
 RUN npm run build
+CMD ["npm", "run", "start:dev"]
 
 # Create a new stage for production
 FROM node:18-alpine as production
