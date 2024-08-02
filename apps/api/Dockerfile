@@ -15,24 +15,4 @@ COPY . .
 
 # Generate Prisma client
 RUN npx prisma generate
-
-# Build the application
-RUN npm run build
-
-# Create a new stage for production
-FROM node:18-alpine as production
-
-# Set the working directory
-WORKDIR /app
-
-# Copy only necessary files from the build stage
-COPY --from=build /app/package*.json ./
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
-COPY --from=build /app/prisma ./prisma 
-
-# Expose the application port
-EXPOSE 4000
-
-# Command to run the application
-CMD ["node", "dist/main.js"]
+CMD ["npm", "run", "start:dev"]
