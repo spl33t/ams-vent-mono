@@ -62,8 +62,6 @@ async function bootstrap() {
     ]
   })
   app.use(cookieParser());
-  const { httpAdapter } = app.get(HttpAdapterHost);
-  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
   app.useGlobalPipes(
     new ValidationPipe({
