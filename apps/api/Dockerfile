@@ -1,5 +1,5 @@
 # build environment
-FROM node:lts as build
+FROM node:18-alpine as build
 WORKDIR /app
 COPY . .
 EXPOSE 4000
