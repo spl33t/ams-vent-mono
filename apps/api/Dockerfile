@@ -7,5 +7,4 @@ EXPOSE 4000
 RUN npm i
 RUN npx prisma generate
 RUN npm run build
-RUN npm run prisma:m-d
 CMD [ "npm", "run", "start:prod" ]
