@@ -58,10 +58,8 @@ const PORT = process.env.APP_PORT || 4000
 
 
 console.log(process.env.NODE_ENV)
-
 console.log(process.env.POSTGRES_HOST)
 console.log(process.env.DATABASE_URL)
-console.log(process.env.b)
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
