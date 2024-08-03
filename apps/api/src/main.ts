@@ -4,6 +4,13 @@ import { Catch, ArgumentsHost, HttpStatus } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 import * as cookieParser from 'cookie-parser';
+//import * as dotenvFlow from 'dotenv-flow';
+//import * as dotenvExpand from "dotenv-expand"
+import * as dotenvx from "@dotenvx/dotenvx"
+
+
+ dotenvx.config();
+
 
 
 
@@ -54,8 +61,7 @@ console.log(process.env.NODE_ENV)
 
 console.log(process.env.POSTGRES_HOST)
 console.log(process.env.DATABASE_URL)
-
-
+console.log(process.env.b)
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
