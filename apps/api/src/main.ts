@@ -9,7 +9,7 @@ import * as cookieParser from 'cookie-parser';
 import * as dotenvx from "@dotenvx/dotenvx"
 
 
- dotenvx.config();
+dotenvx.config();
 
 
 
@@ -70,6 +70,7 @@ async function bootstrap() {
       "http://127.0.0.1:5173",
       "http://127.0.0.1:5173",
       "http://ams-vent.ru",
+      "http://www.amsvent.ru",
       "https://ams-vent.ru",
       "http://147.45.254.198:4200",
       "http://147.45.254.198:80",
