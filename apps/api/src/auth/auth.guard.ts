@@ -28,6 +28,7 @@ export class AuthGuard implements CanActivate {
 
     const req = context.switchToHttp().getRequest() as RequestWithAuth
     const at = req.cookies[AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY]
+    console.log(at, Boolean(at))
 
     if (!at) throw new ForbiddenException()
     const payload = await this.jwtService.verifyAccessToken(at)
