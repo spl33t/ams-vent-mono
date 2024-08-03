@@ -13,7 +13,7 @@
     "start": "nest start",
     "start:dev": "npm run env:dev -- nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "npm run env:prod -- npm run prisma:m-d && node dist/main",
+    "start:prod": "npm run env:prod -- npm run prisma:m-d && npm run env:prod -- node dist/main",
     "prisma:dev:m-d": "npm run env:dev -- prisma migrate dev",
     "prisma:dev:p": "npm run env:dev -- prisma db push",
     "prisma:gen": "prisma generate",
