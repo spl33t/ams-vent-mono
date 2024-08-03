@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: 'http://127.0.0.1:4000/',
+    baseURL: import.meta.env.MODE  === "development" ? 'http://127.0.0.1:4000/' : "http://147.45.254.198:4000/",
     withCredentials: true,
 });
 
