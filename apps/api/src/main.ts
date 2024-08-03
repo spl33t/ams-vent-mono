@@ -73,6 +73,7 @@ async function bootstrap() {
       "http://www.amsvent.ru",
       "https://ams-vent.ru",
       "http://147.45.254.198:4200",
+      "http://147.45.254.198",
       "http://147.45.254.198:80",
       "http://147.45.254.198:80"
     ]
