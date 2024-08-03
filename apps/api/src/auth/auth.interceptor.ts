@@ -21,7 +21,7 @@ export class AuthInterceptor implements NestInterceptor {
 
       //https
       //res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, sameSite: "none", secure: true })
-      res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, sameSite: "none", secure: false })
+      res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, })
 
       return data
     }))

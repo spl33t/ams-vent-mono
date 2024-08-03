@@ -63,6 +63,7 @@ console.log(process.env.DATABASE_URL)
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(cookieParser());
   app.enableCors({
     credentials: true,
     origin: [
@@ -78,7 +79,7 @@ async function bootstrap() {
       "http://147.45.254.198:80"
     ]
   })
-  app.use(cookieParser());
+
   const { httpAdapter } = app.get(HttpAdapterHost);
   app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
 
