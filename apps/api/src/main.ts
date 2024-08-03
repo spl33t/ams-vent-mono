@@ -5,6 +5,8 @@ import { Prisma } from '@prisma/client';
 import { Response } from 'express';
 import * as cookieParser from 'cookie-parser';
 
+
+
 @Catch(Prisma.PrismaClientKnownRequestError, Prisma.PrismaClientValidationError,)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
@@ -44,7 +46,16 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   }
 }
 
+
 const PORT = process.env.APP_PORT || 4000
+
+
+/* console.log(process.env.NODE_ENV)
+
+console.log(process.env.POSTGRES_HOST)
+console.log(process.env.DATABASE_URL)
+ */
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
