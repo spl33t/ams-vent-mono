@@ -1,11 +1,13 @@
-version: "2"
+version: '3.8'
 services:
-  nginx-react:
-    container_name: app
+  web:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-    environment:
-      NODE_ENV: production
+      - '4200:4200'
+    networks:
+      - frontend
+
+networks:
+  frontend:
