@@ -40,7 +40,8 @@ services:
       - "443:443"  # Добавьте этот порт для HTTPS
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/certs:/etc/letsencrypt  # Для хранения сертификатов
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
     depends_on:
       - api
       - web
@@ -51,10 +52,9 @@ services:
   certbot:
     image: certbot/certbot
     volumes:
-      - ./nginx/certs:/etc/letsencrypt
-      - ./nginx/conf.d:/var/www/html
-      - ./entrypoint.sh:/entrypoint.sh  # Монтирование entrypoint.sh в корень контейнера
-    entrypoint: ["sh", "/entrypoint.sh"]  # Путь должен соответствовать пути внутри контейнера
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     depends_on:
       - nginx
     networks:
