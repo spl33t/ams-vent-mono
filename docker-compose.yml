@@ -55,6 +55,8 @@ services:
       - ./nginx/conf.d:/var/www/html
       - ./entrypoint.sh:/entrypoint.sh  # Монтирование entrypoint.sh в корень контейнера
     entrypoint: ["sh", "/entrypoint.sh"]  # Путь должен соответствовать пути внутри контейнера
+    depends_on:
+      - nginx
     networks:
       - frontend
       - backend

@@ -5,7 +5,7 @@ set -e
 nginx &
 
 # Ожидание, пока Nginx запустится
-sleep 5
+sleep 20
 
 # Получение сертификатов
 certbot certonly --webroot \
