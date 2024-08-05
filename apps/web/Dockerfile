@@ -13,10 +13,10 @@ FROM node:alpine
 WORKDIR /app
 
 # Copy the build output to serve it with a simple HTTP server
-COPY --from=build /app/dist ./build
+COPY --from=build /app/dist ./dist
 
 # Install a lightweight HTTP server
 RUN npm install -g http-server
 
 EXPOSE 4200
-CMD ["http-server", "build", "-p", "4200"]
+CMD ["http-server", "dist", "-p", "4200"]
