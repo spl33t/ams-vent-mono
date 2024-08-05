@@ -19,7 +19,7 @@ services:
     networks:
       - backend
     env_file:
-      - .apps/api/env
+      - ./apps/api/env
     volumes:
       - ./apps/api/init.sql:/docker-entrypoint-initdb.d/init.sql
       - pgdata:/var/lib/postgresql/data
