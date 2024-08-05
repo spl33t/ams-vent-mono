@@ -53,7 +53,7 @@ services:
     volumes:
       - ./nginx/certs:/etc/letsencrypt
       - ./nginx/conf.d:/var/www/html
-    entrypoint: entrypoint.sh  # Обновите путь к entrypoint.sh
+    entrypoint: ./entrypoint.sh  # Обновите путь к entrypoint.sh
     networks:
       - frontend
       - backend
