@@ -13,7 +13,7 @@ FROM node:alpine
 WORKDIR /app
 
 # Copy the build output to serve it with a simple HTTP server
-COPY --from=build /app/build ./build
+COPY --from=build /app/dist ./build
 
 # Install a lightweight HTTP server
 RUN npm install -g http-server
