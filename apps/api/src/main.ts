@@ -66,7 +66,21 @@ async function bootstrap() {
   app.use(cookieParser());
   app.enableCors({
     credentials: true,
-    origin: "*"
+    origin: process.env.NODE_ENV === "development" ?
+      ["*"] :
+      [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5173",
+        "http://ams-vent.ru",
+        "http://www.amsvent.ru",
+        "https://amsvent.ru",
+        "https://www.amsvent.ru",
+        "http://147.45.254.198:4200",
+        "http://147.45.254.198",
+        "http://147.45.254.198:80",
+        "http://147.45.254.198:80"
+      ]
   })
 
   const { httpAdapter } = app.get(HttpAdapterHost);
