@@ -1,5 +1,9 @@
 amsvent.ru {
     reverse_proxy / http://web:4200
+    file_server {
+        root /usr/share/caddy
+    }
+    try_files {path} /index.html
 }
 
 api.amsvent.ru {
