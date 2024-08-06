@@ -8,6 +8,8 @@ services:
       - 4000:4000
     depends_on:
       - postgres
+    networks:
+      - caddy_network
 
   postgres:
     image: postgres:13
@@ -19,6 +21,8 @@ services:
     volumes:
       - ./apps/api/init.sql:/docker-entrypoint-initdb.d/init.sql
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - caddy_network
 
   web:
     build:
@@ -26,6 +30,8 @@ services:
     container_name: web
     ports:
       - '4200:4200'
+    networks:
+      - caddy_network
 
   caddy:
     image: caddy:2
@@ -36,7 +42,12 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    networks:
+      - caddy_network
+  
 volumes:
   pgdata:
 
-
+networks:
+  caddy_network:
+    external: true
