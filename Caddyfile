@@ -1,0 +1,7 @@
+amsvent.ru {
+    reverse_proxy / http://web:4200
+}
+
+api.amsvent.ru {
+    reverse_proxy / http://api:4000
+}
