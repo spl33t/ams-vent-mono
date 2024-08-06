@@ -19,4 +19,4 @@ COPY --from=build /app/dist ./dist
 RUN npm install -g http-server
 
 EXPOSE 4200
-CMD ["http-server", "dist", "-p", "4200", "--proxy", "http://localhost:4200?", "--cors"]
+CMD ["http-server", "dist", "-p", "4200", "--proxy", "http://localhost:4200?", "--cors", "--ssl"]
