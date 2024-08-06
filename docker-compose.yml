@@ -49,4 +49,5 @@ volumes:
   pgdata:
 
 networks:
-  caddy_network:
+    caddy_network:
+        external: true
