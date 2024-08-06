@@ -50,4 +50,3 @@ volumes:
 
 networks:
   caddy_network:
-    external: true
