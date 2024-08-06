@@ -1,7 +1,19 @@
 amsvent.ru www.amsvent.ru {
     reverse_proxy web:4200
+
+    header {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    }
 }
 
 api.amsvent.ru {
     reverse_proxy api:4000
+
+    header {
+        Access-Control-Allow-Origin "*"
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+        Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+    }
 }
