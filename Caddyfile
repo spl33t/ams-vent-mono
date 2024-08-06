@@ -1,5 +1,5 @@
 amsvent.ru {
-    reverse_proxy / http://web:4200
+    reverse_proxy web:4200
     file_server {
         root /usr/share/caddy
     }
@@ -7,5 +7,5 @@ amsvent.ru {
 }
 
 api.amsvent.ru {
-    reverse_proxy / http://api:4000
+    reverse_proxy api:4000
 }
