@@ -19,7 +19,7 @@ export default ({ mode }: UserConfig) => {
       host: "127.0.0.1",
       port: Number(process.env.VITE_APP_PORT),
     },
-    build: {
+/*     build: {
       rollupOptions: {
         output: {
           entryFileNames: `assets/[name].[hash].js`,
@@ -27,6 +27,6 @@ export default ({ mode }: UserConfig) => {
           assetFileNames: `assets/[name].[hash].[ext]`
         }
       }
-    }
+    } */
   });
 }
