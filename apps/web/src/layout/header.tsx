@@ -29,7 +29,7 @@ export function Header(props: { overlayHeader?: boolean }) {
           <HeaderNav $isOpen={isOpen}>
             {navItems.map((item, key) => {
               return (
-                <Link to={item.href || ""} key={key}>
+                <Link to={item.href || ""} key={key} onClick={() => setIsOpen(false)}>
                   {item.name}
                 </Link>
               );
