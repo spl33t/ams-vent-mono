@@ -26,13 +26,11 @@ services:
   web:
     build:
       context: ./apps/web/
-      args:
-        - ARG_APP_PORT=${VITE_APP_PORT}
     env_file:
       - ./apps/web/.env
     container_name: web
     ports:
-      - '${VITE_APP_PORT}:${VITE_APP_PORT}'
+      - $VITE_APP_PORT:$VITE_APP_PORT
 
   caddy:
     image: caddy:2
