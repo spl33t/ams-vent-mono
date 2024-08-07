@@ -18,6 +18,15 @@ export default ({ mode }: UserConfig) => {
     server: {
       host: "127.0.0.1",
       port: Number(process.env.VITE_APP_PORT),
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: `assets/[name].[hash].js`,
+          chunkFileNames: `assets/[name].[hash].js`,
+          assetFileNames: `assets/[name].[hash].[ext]`
+        }
+      }
     }
   });
 }
