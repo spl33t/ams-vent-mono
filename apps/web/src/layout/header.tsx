@@ -11,7 +11,7 @@ type MenuItem = {
 };
 
 const navItems: MenuItem[] = [
-  { name: "ПроектыEWO", href: "/#projects" },
+  { name: "ПроектыEWOssdas", href: "/#projects" },
   { name: "Контакты", href: "/#company-info" },
 ];
 
