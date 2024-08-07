@@ -1,5 +1,8 @@
 # Stage 1: Build the React app
 FROM node:alpine as build
+
+ARG ARG_APP_PORT
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -18,5 +21,5 @@ COPY --from=build /app/dist ./dist
 # Install a lightweight HTTP server
 RUN npm install -g http-server
 
-EXPOSE 4200
+EXPOSE $ARG_APP_PORT
 CMD ["http-server", "dist", "-p", "4200", "--proxy", "http://localhost:4200?", "--cors"]

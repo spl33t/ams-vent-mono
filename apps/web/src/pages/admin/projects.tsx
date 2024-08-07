@@ -3,6 +3,7 @@ import { Input, inputFactory } from "../../libs/input-factory";
 import { useUnit } from "effector-react";
 import { ScreenLayout } from "./shared";
 import { $projects, putProjectFx, createProjectFx, deleteProjectFx, deleteFileFx, uploadFileFx } from "../../entity/project";
+import { debounce } from "patronum/debounce";
 
 const nameInputs = {} as Record<string, ReturnType<typeof inputFactory<any>>>;
 
@@ -10,9 +11,11 @@ $projects.watch((state) => {
   if (state.length !== 0) {
     state.forEach((project) => {
       const input = inputFactory(project.name);
-      input.onChange.watch((value) => {
+
+      debounce(input.onChange, 1000).watch((value) => {
         putProjectFx({ id: project.id, name: value });
       });
+
       nameInputs[project.id] = input;
     });
   }
@@ -36,9 +39,9 @@ export function Projects() {
             <Project key={project.id}>
               <ProjectHeader>
                 <ProjectTitle>
-                  <Input inputModel={nameInputs[project.id]} />
+                  <Input inputModel={nameInputs[project?.id]} type="textarea" label="Название проекта:" />
                 </ProjectTitle>
-                <ProjectDelete onClick={() => deleteProjectFx({ id: project.id })}>Удалить</ProjectDelete>
+                <ProjectDelete onClick={() => deleteProjectFx({ id: project.id })}>Удалить проект</ProjectDelete>
               </ProjectHeader>
               {/* <div>{project.id}</div> */}
               <ProjectPhotos>
@@ -86,16 +89,20 @@ const Project = styled.div`
 const ProjectHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  gap: 20px;
 `;
 const ProjectTitle = styled.div`
-  input {
-    font-size: 26px;
-    font-weight: 600;
-    border: 0;
-    border-bottom: 1px solid #ddd;
+  width: 100%;
+  textarea {
+    width: 100%;
+    font-size: 20px;
+    height: 15vh;
   }
 `;
-const ProjectDelete = styled.button``;
+const ProjectDelete = styled.button`
+  height: max-content;
+`;
 
 const ProjectPhotos = styled.div`
   display: flex;

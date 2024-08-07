@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://api.amsvent.ru",
+    baseURL: import.meta.env.VITE_API_URL,
     withCredentials: true,
 });
 
@@ -45,7 +45,7 @@ export async function apiRequest<T>(options: HttpRequestOptions): Promise<T> {
             );
 
 
-            return data 
+            return data
         })
         .catch((error: AxiosError) => {
             console.warn(error)

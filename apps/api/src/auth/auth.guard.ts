@@ -4,7 +4,6 @@ import { AuthController } from './auth.controller';
 import { AUTH_MODULE_CONSTANTS } from './constants';
 import { JwtService } from "./jwt.service"
 import { UsersService } from 'src/users/users.service';
-import { User } from '@prisma/client';
 import { IS_PUBLIC_KEY } from './public.decorator';
 import { Reflector } from '@nestjs/core';
 
@@ -28,8 +27,8 @@ export class AuthGuard implements CanActivate {
 
     const req = context.switchToHttp().getRequest() as RequestWithAuth
     const at = req.cookies[AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY]
-    console.log(at, Boolean(at))
 
+    console.log(req.cookies, at)
     if (!at) throw new ForbiddenException()
     const payload = await this.jwtService.verifyAccessToken(at)
 

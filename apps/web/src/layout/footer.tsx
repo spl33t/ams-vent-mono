@@ -1,15 +1,20 @@
+import { CompanyInfo } from "@/components/company-info";
 import styled from "styled-components";
 
 export function Footer() {
   return (
     <FooterSection>
       <FooterContent>
-        {new Date().toISOString().split("T")[0].replaceAll("-", ".")} - AMSvent.
+        <CompanyInfo />
+        <CurrentDate>{new Date().toISOString().split("T")[0].replaceAll("-", ".")} - AMSvent.</CurrentDate>
       </FooterContent>
     </FooterSection>
   );
 }
 
+const CurrentDate = styled.footer`
+  font-size: 3vw;
+`;
 const FooterSection = styled.footer`
   width: 100%;
   padding: 30px 10px;
@@ -23,8 +28,7 @@ const FooterContent = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 100px;
 `;

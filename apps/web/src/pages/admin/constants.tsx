@@ -5,6 +5,7 @@ import { Input, inputFactory } from "../../libs/input-factory";
 const $$loginInput = inputFactory("ROOT1337");
 const $$passwordInput = inputFactory("ROOT1337");
  */
+
 export function Constants() {
   return (
     <Wrapper>

@@ -16,6 +16,7 @@
     "axios": "^1.7.2",
     "effector": "^23.2.2",
     "effector-react": "^23.2.1",
+    "patronum": "^2.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.11",
@@ -23,6 +24,7 @@
     "swiper": "^11.1.4"
   },
   "devDependencies": {
+    "@types/node": "^22.1.0",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

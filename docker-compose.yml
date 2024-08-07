@@ -4,8 +4,10 @@ services:
     build:
       context: ./apps/api/
     container_name: api
+    env_file:
+      - ./apps/api/.env
     ports:
-      - 4000:4000
+      - ${APP_PORT}:${APP_PORT}
     depends_on:
       - postgres
 
@@ -13,8 +15,9 @@ services:
     image: postgres:13
     container_name: postgres
     ports:
-      - 5432:5432
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
     env_file:
+      - ./apps/api/.env
       - ./apps/api/.env.production
     volumes:
       - ./apps/api/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -23,9 +26,13 @@ services:
   web:
     build:
       context: ./apps/web/
+      args:
+        - ARG_APP_PORT=${VITE_APP_PORT}
+    env_file:
+      - ./apps/web/.env
     container_name: web
     ports:
-      - '4200:4200'
+      - '${VITE_APP_PORT}:${VITE_APP_PORT}'
 
   caddy:
     image: caddy:2

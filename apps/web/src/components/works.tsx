@@ -9,7 +9,7 @@ export function Works(props: { title: string; currentId?: string }) {
   const projects = useUnit($projects);
   return (
     <>
-      <WorksSection>
+      <WorksSection id="works">
         <h3>{props.title}</h3>
         <h4>
           Каждый новый проект для нас — это вызов сделать лучшую работу в соответствии с задачами и <span>потребностями клиента.</span>

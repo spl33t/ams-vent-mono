@@ -17,12 +17,12 @@ const sliderItems: SliderItem[] = [
   },
   {
     title: "Монтаж приточно-вытяжной системы",
-    subtitle: "Делаем заебись, делаем надежно!",
+    subtitle: "Проектирование, монтаж, запуск",
     background: SecondSlide
   },
   {
     title: "Проектирование",
-    subtitle: "Все что душе угодно, идеи похлеще чем в сколково.",
+    subtitle: "Реализация проектов любой сложности",
     background: ThirdSlide
   },
 ];

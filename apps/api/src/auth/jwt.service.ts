@@ -10,10 +10,10 @@ export class JwtService {
     async createAccessToken(user: User) {
         try {
             const payload: JwtPayload = { id: user.id, login: user.login };
-            const at = sign(payload, AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_SECRET, { expiresIn: "15m" })
+            const at = sign(payload, AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_SECRET, { expiresIn: "5d" })
             return at
         } catch (err) {
-            console.log("jwtService at-sign err", err)
+            console.log("jwtService sing  err", err)
             throw err
         }
     }
@@ -22,7 +22,7 @@ export class JwtService {
             const decoded = verify(token, AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_SECRET)
             return decoded as JwtPayload
         } catch (err) {
-            console.log("jwtService at-sign err", err)
+            console.log("jwtService verify err", err)
             throw err
         }
     }

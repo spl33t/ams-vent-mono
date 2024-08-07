@@ -7,7 +7,8 @@ import { homePage } from "./pages/home";
 import { worksPage } from "./pages/work";
 import { GlobalStyle } from "./styles";
 
-const appStarted = createEvent()
+console.log(import.meta.env.VITE_API_URL);
+const appStarted = createEvent();
 
 export const router = defineRouter({
   homePage,
@@ -15,14 +16,13 @@ export const router = defineRouter({
   adminPage,
 });
 
-
 sample({
   clock: appStarted,
   target: getProjectsFx,
 });
 
 function App() {
-  appStarted()
+  appStarted();
   return (
     <>
       <GlobalStyle />

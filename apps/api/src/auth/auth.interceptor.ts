@@ -5,6 +5,20 @@ import { AUTH_MODULE_CONSTANTS } from './constants';
 import { JwtService } from './jwt.service';
 import { User } from '@prisma/client';
 import typia from 'typia';
+import { Request } from "express"
+
+function getProtocol(req: Request) {
+  const isPostman = Boolean((req.headers)["postman-token"])
+  if (isPostman) return "http"
+
+  const origin = req.get('origin')
+  if (typeof origin !== "string") return undefined
+
+  const url = new URL(origin)
+  const protocol = url.protocol.replace(/[^a-zA-Z0-9 ]/g, '')
+
+  if (protocol === "https" || protocol === "http") return protocol;
+}
 
 @Injectable()
 export class AuthInterceptor implements NestInterceptor {
@@ -18,10 +32,16 @@ export class AuthInterceptor implements NestInterceptor {
       if (!at) throw new Error("class.AuthInterceptor no access token")
 
       const res = context.switchToHttp().getResponse() as Response
+      const req = context.switchToHttp().getRequest() as Request
+      const protocol = getProtocol(req)
 
-      //https
-      //res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, sameSite: "none", secure: true })
-      res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, })
+      if (protocol === "http") {
+        res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true })
+      }
+
+      if (protocol === "https") {
+        res.cookie(AUTH_MODULE_CONSTANTS.ACCESS_TOKEN_KEY, at, { httpOnly: true, sameSite: "none", secure: true, })
+      }
 
       return data
     }))

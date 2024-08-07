@@ -3,6 +3,7 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { router } from "../App";
 import Logo from "./logo.svg";
+import {constants} from "@/data/constans"
 
 type MenuItem = {
   name: string;
@@ -28,7 +29,7 @@ export function Header(props: { overlayHeader?: boolean }) {
             })}
           </HeaderNav>
 
-          <div>7 (925) 063-36-41</div>
+          <div>{constants.phone}</div>
 
           <StyledBurger open={isOpen} onClick={() => setIsOpen(!isOpen)}>
             <div />
@@ -41,6 +42,7 @@ export function Header(props: { overlayHeader?: boolean }) {
     </>
   );
 }
+
 const styles = {
   headerHeight: "72px",
 };
