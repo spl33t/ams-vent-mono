@@ -42,6 +42,7 @@ const LoaderWrapper = styled.div<{ $isDisplay: boolean }>`
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   opacity: ${(props) => (props.$isDisplay ? 1 : 0)};
   transition: 1s ease;
@@ -130,8 +131,8 @@ const LoaderOverlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-color: black;
   animation: fadeOut 1.3s forwards;
   @keyframes fadeOut {

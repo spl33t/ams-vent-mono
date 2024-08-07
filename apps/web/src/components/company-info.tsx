@@ -4,7 +4,7 @@ import { constants } from "../data/constans";
 export function CompanyInfo() {
   return (
     <>
-      <CompanyInfoSection>
+      <CompanyInfoSection id="company-info">
         <h4>{constants.companyName}</h4>
 
         <CompanyContent>

@@ -9,12 +9,12 @@ export function Works(props: { title: string; currentId?: string }) {
   const projects = useUnit($projects);
   return (
     <>
-      <WorksSection id="works">
+      <WorksSection id="projects">
         <h3>{props.title}</h3>
-        <h4>
+        {/*   <h4>
           Каждый новый проект для нас — это вызов сделать лучшую работу в соответствии с задачами и <span>потребностями клиента.</span>
         </h4>
-
+ */}
         <WorksItems>
           {projects.map((item, key) => {
             if (item.id !== props.currentId)

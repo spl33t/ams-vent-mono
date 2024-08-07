@@ -13,7 +13,7 @@ export function Footer() {
 }
 
 const CurrentDate = styled.footer`
-  font-size: 3vw;
+  font-size: clamp(20px, 5vw, 48px);
 `;
 const FooterSection = styled.footer`
   width: 100%;

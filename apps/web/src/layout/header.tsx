@@ -3,14 +3,17 @@ import { useState } from "react";
 import styled, { css } from "styled-components";
 import { router } from "../App";
 import Logo from "./logo.svg";
-import {constants} from "@/data/constans"
+import { constants } from "@/data/constans";
 
 type MenuItem = {
   name: string;
   href?: string;
 };
 
-const navItems: MenuItem[] = [{ name: "Наши проекты", href: "/#my-works" }, { name: "Контакты" }];
+const navItems: MenuItem[] = [
+  { name: "Проекты", href: "/#projects" },
+  { name: "Контакты", href: "/#company-info" },
+];
 
 export function Header(props: { overlayHeader?: boolean }) {
   const overlayHeader = props.overlayHeader || false;
@@ -25,7 +28,11 @@ export function Header(props: { overlayHeader?: boolean }) {
 
           <HeaderNav $isOpen={isOpen}>
             {navItems.map((item, key) => {
-              return <a key={key}>{item.name}</a>;
+              return (
+                <Link to={item.href || ""} key={key}>
+                  {item.name}
+                </Link>
+              );
             })}
           </HeaderNav>
 
@@ -53,6 +60,14 @@ const HeaderNav = styled.nav<{ $isOpen: boolean }>`
   display: flex;
   gap: 20px;
 
+  > a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      color: red;
+    }
+  }
+
   @media (max-width: 700px) {
     display: flex;
     position: absolute;
@@ -78,13 +93,12 @@ const HeaderNav = styled.nav<{ $isOpen: boolean }>`
       flex-direction: column;
       transition: 0.3s ease-in all;
       opacity: 0;
-
       ${(props) =>
         props.$isOpen &&
         css`
           opacity: 1;
           // transform: translateY(10px);
-        `}
+        `};
     }
   }
 `;
